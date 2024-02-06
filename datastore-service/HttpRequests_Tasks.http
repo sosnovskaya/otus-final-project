@@ -1,0 +1,36 @@
+###
+POST http://localhost:8081/api/tasks
+Accept: */*
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+  "name": "To do",
+  "description": "make to do list",
+  "personId": 1,
+  "startTime": "",
+  "endTime": ""
+}
+
+###
+GET http://localhost:8081/api/tasks/2
+
+###
+GET http://localhost:8081/api/tasks
+
+###
+PUT http://localhost:8081/api/tasks/1/start
+Accept: */*
+Content-Type: application/json
+
+
+"2024-02-06T19:46:54.538222"
+
+
+###
+PUT http://localhost:8081/api/tasks/1/end
+Accept: */*
+Content-Type: application/json
+Cache-Control: no-cache
+
+"2024-02-06T19:46:54.538222"

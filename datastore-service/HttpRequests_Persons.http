@@ -1,0 +1,15 @@
+###
+POST http://localhost:8081/api/persons
+Accept: */*
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+  "name": "Pavel"
+}
+
+###
+GET http://localhost:8081/api/persons/3
+
+###
+GET http://localhost:8081/api/persons

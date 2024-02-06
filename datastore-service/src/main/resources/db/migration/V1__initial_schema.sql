@@ -1,7 +1,15 @@
-create table message
+create table person
 (
-    id       bigserial    not null primary key,
-    room_id  varchar(50)  not null,
-    msg_text varchar(500) not null
+    id   bigserial   not null primary key,
+    name varchar(50) not null
 );
-create index idx_message_room_id on message (room_id);
+
+create table task
+(
+    id          bigserial   not null primary key,
+    name        varchar(50) not null,
+    description varchar(500),
+    person_id   bigserial   not null references person (id),
+    start_time  timestamp,
+    end_time    timestamp
+);
