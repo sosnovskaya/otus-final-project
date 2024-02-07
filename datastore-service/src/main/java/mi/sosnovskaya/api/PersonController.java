@@ -50,10 +50,10 @@ public class PersonController {
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_NDJSON_VALUE)
-    public Flux<PersonDto> getPersonById(@PathVariable("id") Long id) {
+    public Mono<PersonDto> getPersonById(@PathVariable("id") Long id) {
         return Mono.just(id)
                 .doOnNext(room -> log.info("PersonController - getPersonById:{}", id))
-                .flatMapMany(personService::getPersonById)
+                .flatMap(personService::getPersonById)
                 .map(person -> new PersonDto(person.getId(), person.getName()))
                 .doOnNext(person -> log.info("personDto:{}", person))
                 .subscribeOn(workerPool);

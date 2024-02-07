@@ -52,10 +52,19 @@ public class TaskController {
                 .subscribeOn(workerPool);
     }
 
+//    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_NDJSON_VALUE)
+//    public Mono<TaskDto> getTaskById(@PathVariable("id") Long id) {
+//        log.info("TaskController - getTaskById:{}", id);
+//        return taskService.getTasksById(id)
+//                .map(task -> new TaskDto(task.getId(), task.getName(), task.getDescription(), task.getPersonId(), task.getStartTime(), task.getEndTime()))
+//                .doOnNext(taskDto -> log.info("taskDto:{}", taskDto))
+//                .subscribeOn(workerPool);
+//    }
+
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_NDJSON_VALUE)
-    public Mono<TaskDto> getTaskById(@PathVariable("id") Long id) {
-        log.info("TaskController - getTaskById:{}", id);
-        return taskService.getTasksById(id)
+    public Flux<TaskDto> getTaskByPersonId(@PathVariable("id") Long id) {
+        log.info("TaskController - getTaskByPersonId:{}", id);
+        return taskService.getAllTasksByPersonId(id)
                 .map(task -> new TaskDto(task.getId(), task.getName(), task.getDescription(), task.getPersonId(), task.getStartTime(), task.getEndTime()))
                 .doOnNext(taskDto -> log.info("taskDto:{}", taskDto))
                 .subscribeOn(workerPool);
